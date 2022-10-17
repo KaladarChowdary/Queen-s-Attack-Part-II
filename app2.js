@@ -168,3 +168,5 @@ for (let i = 0; i < 5; i++) {
 
   console.log(`closest left is ${closestLeft(row, column, r1, c1)}`);
 }
+
+//Creating function to test whether edges is correct or not
