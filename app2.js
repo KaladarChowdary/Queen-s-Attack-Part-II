@@ -75,19 +75,29 @@ function BottomRight(size, row, column) {
   return [row - rem, column + rem];
 }
 
-function allEnds(size, row, column) {
+//Creating function to test whether edges is correct or not
+function testEnds(size, row, column) {
   let [l, r] = leftRight(size, row, column);
   let [t, b] = topBottom(size, row, column);
   let tl = TopLeft(size, row, column);
   let tr = TopRight(size, row, column);
   let bl = BottomLeft(size, row, column);
   let br = BottomRight(size, row, column);
-  console.log(l, r);
-  console.log(t, b);
-  console.log(...tl);
-  console.log(...tr);
-  console.log(...bl);
-  console.log(...br);
+
+  let edgePair = [
+    ["left", l],
+    ["right", r],
+    ["top", t],
+    ["bottom", b],
+    ["top-left", tl],
+    ["top-right", tr],
+    ["bottom-left", bl],
+    ["bottom-right", br],
+  ];
+
+  for (let [pname, p] of edgePair) {
+    console.log(`${p} is to the ${pname} of ${[row, column]}`);
+  }
 }
 // -------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------
@@ -131,72 +141,3 @@ function isBottomLeft(row, column, row1, column1) {
 // -------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------
-
-// function test(row, column, r1, c1, str, func) {
-//   console.log(
-//     `Is ${[r1, c1]} is ${str} of ${[row, column]}? ${func(row, column, r1, c1)}`
-//   );
-// }
-// for (let i = 0; i < 10; i++) {
-//   let size = 10;
-//   let row = randInt(1, size);
-//   let column = randInt(1, size);
-
-//   let [r1, c1] = TopLeft(size, row, column);
-//   let [r2, c2] = TopRight(size, row, column);
-//   let [r3, c3] = BottomLeft(size, row, column);
-//   let [r4, c4] = BottomRight(size, row, column);
-
-//   console.log(`${size}X${size}`);
-//   test(row, column, r1, c1, "top-left", isTopLeft);
-//   test(row, column, r2, c2, "top-right", isTopRight);
-//   test(row, column, r3, c3, "bottom-left", isBottomLeft);
-//   test(row, column, r4, c4, "bottom-right", isBottomRight);
-
-//   console.log(`\n\n`);
-// }
-
-// left = closestLeft(row, column, row1, column1);
-
-function closestLeft(row, column, row1, column1) {
-  return column1 < column ? [row1, column1] : [row, column];
-}
-
-// for (let i = 0; i < 5; i++) {
-//   let [row, column] = [3, 3];
-//   let [r1, c1] = [3, 3 + 2 - i];
-
-//   console.log(`closest left is ${closestLeft(row, column, r1, c1)}`);
-// }
-
-// -------------------------------------------------------------------------------------------------
-// -------------------------------------------------------------------------------------------------
-// -------------------------------------------------------------------------------------------------
-//Creating function to test whether edges is correct or not
-function testEnds(size, row, column) {
-  let [l, r] = leftRight(size, row, column);
-  let [t, b] = topBottom(size, row, column);
-  let tl = TopLeft(size, row, column);
-  let tr = TopRight(size, row, column);
-  let bl = BottomLeft(size, row, column);
-  let br = BottomRight(size, row, column);
-
-  function print(row, column, edge, str) {
-    console.log(`${edge} is to the ${str} of ${[row, column]}`);
-  }
-
-  console.log(`Chess Board Size is ${size}X${size}`);
-  console.log(`Queen is at ${[row, column]}`);
-
-  print(row, column, l, "left");
-  print(row, column, r, "right");
-  print(row, column, t, "top");
-  print(row, column, b, "bottom");
-
-  print(row, column, tl, "top-left");
-  print(row, column, tr, "top-right");
-  print(row, column, bl, "bottom-left");
-  print(row, column, br, "bottom-right");
-}
-
-testEnds(3, 2, 2);
