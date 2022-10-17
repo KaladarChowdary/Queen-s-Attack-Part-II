@@ -162,11 +162,41 @@ function closestLeft(row, column, row1, column1) {
   return column1 < column ? [row1, column1] : [row, column];
 }
 
-for (let i = 0; i < 5; i++) {
-  let [row, column] = [3, 3];
-  let [r1, c1] = [3, 3 + 2 - i];
+// for (let i = 0; i < 5; i++) {
+//   let [row, column] = [3, 3];
+//   let [r1, c1] = [3, 3 + 2 - i];
 
-  console.log(`closest left is ${closestLeft(row, column, r1, c1)}`);
+//   console.log(`closest left is ${closestLeft(row, column, r1, c1)}`);
+// }
+
+// -------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------
+//Creating function to test whether edges is correct or not
+function testEnds(size, row, column) {
+  let [l, r] = leftRight(size, row, column);
+  let [t, b] = topBottom(size, row, column);
+  let tl = TopLeft(size, row, column);
+  let tr = TopRight(size, row, column);
+  let bl = BottomLeft(size, row, column);
+  let br = BottomRight(size, row, column);
+
+  function print(row, column, edge, str) {
+    console.log(`${edge} is to the ${str} of ${[row, column]}`);
+  }
+
+  console.log(`Chess Board Size is ${size}X${size}`);
+  console.log(`Queen is at ${[row, column]}`);
+
+  print(row, column, l, "left");
+  print(row, column, r, "right");
+  print(row, column, t, "top");
+  print(row, column, b, "bottom");
+
+  print(row, column, tl, "top-left");
+  print(row, column, tr, "top-right");
+  print(row, column, bl, "bottom-left");
+  print(row, column, br, "bottom-right");
 }
 
-//Creating function to test whether edges is correct or not
+testEnds(3, 2, 2);
