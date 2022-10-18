@@ -161,3 +161,22 @@ function higherRow(row1, col1, row2, col2) {
 
 // -> RIGHT
 // <- LEFT
+
+//Write test for it
+size = 5;
+let row, col;
+row = 2;
+col = 4;
+
+let [l, r] = leftRight(size, row, col);
+for (let i = 0; i < 5; i++) {
+  for (let j = 0; j < 5; j++) {
+    if (isLeft(row, col, i, j)) {
+      console.log(
+        `Which is closer to ${[row, col]} ----------- ${l} or ${[i, j]}`
+      );
+      l = greaterColumn(...l, i, j);
+      console.log(`It is ${l}`);
+    } else console.log(`${[i, j]} isn't to the left of ${[row, col]}`);
+  }
+}
