@@ -180,3 +180,12 @@ for (let i = 0; i < 5; i++) {
     } else console.log(`${[i, j]} isn't to the left of ${[row, col]}`);
   }
 }
+
+function closestObstacles(size, row, col, obstacleArr) {
+  let [l, r] = leftRight(size, row, column);
+  let [t, b] = topBottom(size, row, column);
+  let tl = TopLeft(size, row, column);
+  let tr = TopRight(size, row, column);
+  let bl = BottomLeft(size, row, column);
+  let br = BottomRight(size, row, column);
+}
