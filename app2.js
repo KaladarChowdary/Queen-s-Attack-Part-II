@@ -141,3 +141,23 @@ function isBottomLeft(row, column, row1, column1) {
 // -------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------
+
+// Functions to return closest obstacle to the queen
+function lesserColumn(row1, col1, row2, col2) {
+  return col1 < col2 ? [row1, col1] : [row2, col2];
+}
+
+function greaterColumn(row1, col1, row2, col2) {
+  return col1 > col2 ? [row1, col1] : [row2, col2];
+}
+
+function lowerRow(row1, col1, row2, col2) {
+  return row1 < row2 ? [row1, col1] : [row2, col2];
+}
+
+function higherRow(row1, col1, row2, col2) {
+  return row1 > row2 ? [row1, col1] : [row2, col2];
+}
+
+// -> RIGHT
+// <- LEFT
