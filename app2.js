@@ -163,23 +163,6 @@ function higherRow(row1, col1, row2, col2) {
 // <- LEFT
 
 //Write test for it
-size = 5;
-let row, col;
-row = 2;
-col = 4;
-
-let [l, r] = leftRight(size, row, col);
-for (let i = 0; i < 5; i++) {
-  for (let j = 0; j < 5; j++) {
-    if (isLeft(row, col, i, j)) {
-      console.log(
-        `Which is closer to ${[row, col]} ----------- ${l} or ${[i, j]}`
-      );
-      l = greaterColumn(...l, i, j);
-      console.log(`It is ${l}`);
-    } else console.log(`${[i, j]} isn't to the left of ${[row, col]}`);
-  }
-}
 
 function closestObstacles(size, row, col, obstacleArr) {
   let [l, r] = leftRight(size, row, column);
@@ -189,3 +172,39 @@ function closestObstacles(size, row, col, obstacleArr) {
   let bl = BottomLeft(size, row, column);
   let br = BottomRight(size, row, column);
 }
+
+// MASTER TEST CASE
+
+function test(size) {
+  let row, col;
+
+  row = randInt(1, size);
+  col = randInt(1, size);
+
+  let l, r, t, b;
+  // [l, r] = leftRight(size, row, col);
+  // [t, b] = topBottom(size, row, col);
+  tl = [];
+  tr = [];
+  bl = [];
+  br = [];
+
+  for (let i = 1; i <= size; i++) {
+    for (let j = 1; j <= size; j++) {
+      if (i === row && j === col) continue;
+
+      if (isTopRight(row, col, i, j)) tr.push([i, j]);
+      if (isTopLeft(row, col, i, j)) tl.push([i, j]);
+      if (isBottomRight(row, col, i, j)) br.push([i, j]);
+      if (isBottomLeft(row, col, i, j)) bl.push([i, j]);
+    }
+  }
+
+  console.log(`Size is ${size}`);
+  console.log(`Position of queen ${[row, col]}`);
+
+  console.log(`topleft of queen ${tl.join(",")}`);
+  console.log(`topright of queen ${tr.join(",")}`);
+}
+
+test(7);
