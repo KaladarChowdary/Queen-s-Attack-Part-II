@@ -62,14 +62,14 @@ function TopLeft(size, row, column) {
   return [row + diff, column - diff];
 }
 
-function BottomLeft(size, row, column) {
-  let rem = smaller(row - 1, column - 1);
-  return [row - rem, column - rem];
-}
-
 function BottomRight(size, row, column) {
   let rem = smaller(row - 1, size - column);
   return [row - rem, column + rem];
+}
+
+function BottomLeft(size, row, column) {
+  let rem = smaller(row - 1, column - 1);
+  return [row - rem, column - rem];
 }
 
 //Creating function to test whether edges is correct or not
