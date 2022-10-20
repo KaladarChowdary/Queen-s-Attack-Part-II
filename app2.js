@@ -175,7 +175,7 @@ function closestObstacles(size, row, col, obstacleArr) {
 
 // MASTER TEST CASE
 
-function test(size) {
+function testLeftRightTopEtc(size) {
   let row, col;
 
   row = randInt(1, size);
@@ -188,10 +188,19 @@ function test(size) {
   tr = [];
   bl = [];
   br = [];
+  t = [];
+  b = [];
+  l = [];
+  r = [];
 
   for (let i = 1; i <= size; i++) {
     for (let j = 1; j <= size; j++) {
       if (i === row && j === col) continue;
+
+      if (isTop(row, col, i, j)) t.push([i, j]);
+      if (isBottom(row, col, i, j)) b.push([i, j]);
+      if (isLeft(row, col, i, j)) l.push([i, j]);
+      if (isRight(row, col, i, j)) r.push([i, j]);
 
       if (isTopRight(row, col, i, j)) tr.push([i, j]);
       if (isTopLeft(row, col, i, j)) tl.push([i, j]);
@@ -203,8 +212,15 @@ function test(size) {
   console.log(`Size is ${size}`);
   console.log(`Position of queen ${[row, col]}`);
 
+  console.log(`top of queen ${t.join(",")}`);
+  console.log(`bottom of queen ${b.join(",")}`);
+  console.log(`right of queen ${r.join(",")}`);
+  console.log(`left of queen ${l.join(",")}`);
+
   console.log(`topleft of queen ${tl.join(",")}`);
   console.log(`topright of queen ${tr.join(",")}`);
+  console.log(`bottomleft of queen ${bl.join(",")}`);
+  console.log(`bottomright of queen ${br.join(",")}`);
 }
 
 test(7);
