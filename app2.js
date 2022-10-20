@@ -138,31 +138,6 @@ function isBottomRight(row, column, row1, column1) {
 function isBottomLeft(row, column, row1, column1) {
   return row1 - row === column1 - column && row1 - row < 0;
 }
-// -------------------------------------------------------------------------------------------------
-// -------------------------------------------------------------------------------------------------
-// -------------------------------------------------------------------------------------------------
-
-// Functions to return closest obstacle to the queen
-function lesserColumn(row1, col1, row2, col2) {
-  return col1 < col2 ? [row1, col1] : [row2, col2];
-}
-
-function greaterColumn(row1, col1, row2, col2) {
-  return col1 > col2 ? [row1, col1] : [row2, col2];
-}
-
-function lowerRow(row1, col1, row2, col2) {
-  return row1 < row2 ? [row1, col1] : [row2, col2];
-}
-
-function higherRow(row1, col1, row2, col2) {
-  return row1 > row2 ? [row1, col1] : [row2, col2];
-}
-
-// -> RIGHT
-// <- LEFT
-
-// MASTER TEST CASE
 
 function testLeftRightTopEtc(size) {
   let row, col;
@@ -211,6 +186,31 @@ function testLeftRightTopEtc(size) {
   console.log(`bottomleft of queen ${bl.join(",")}`);
   console.log(`bottomright of queen ${br.join(",")}`);
 }
+// -------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------
+
+// Functions to return closest obstacle to the queen
+function lesserColumn(row1, col1, row2, col2) {
+  return col1 < col2 ? [row1, col1] : [row2, col2];
+}
+
+function greaterColumn(row1, col1, row2, col2) {
+  return col1 > col2 ? [row1, col1] : [row2, col2];
+}
+
+function lowerRow(row1, col1, row2, col2) {
+  return row1 < row2 ? [row1, col1] : [row2, col2];
+}
+
+function higherRow(row1, col1, row2, col2) {
+  return row1 > row2 ? [row1, col1] : [row2, col2];
+}
+
+// -> RIGHT
+// <- LEFT
+
+// MASTER TEST CASE
 
 test(7);
 
