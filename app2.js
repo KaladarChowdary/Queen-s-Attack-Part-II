@@ -18,16 +18,13 @@ function smaller(a, b) {
 // -------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------
 
-// LEVEL 1
-
 function randArr(size, [from, to]) {
   let arr = [];
   for (let i = 0; i < size; i++) arr.push(randInt(from, to));
   return arr;
 }
 
-// LEVEL 2
-function obArr(size, limit) {
+function obstaclePositionArray(size, limit) {
   let arr = [];
   for (let i = 0; i < size; i++) {
     arr.push(randArr(2, [1, limit]));
