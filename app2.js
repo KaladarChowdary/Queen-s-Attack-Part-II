@@ -162,17 +162,6 @@ function higherRow(row1, col1, row2, col2) {
 // -> RIGHT
 // <- LEFT
 
-//Write test for it
-
-function closestObstacles(size, row, col, obstacleArr) {
-  let [l, r] = leftRight(size, row, column);
-  let [t, b] = topBottom(size, row, column);
-  let tl = TopLeft(size, row, column);
-  let tr = TopRight(size, row, column);
-  let bl = BottomLeft(size, row, column);
-  let br = BottomRight(size, row, column);
-}
-
 // MASTER TEST CASE
 
 function testLeftRightTopEtc(size) {
@@ -224,3 +213,12 @@ function testLeftRightTopEtc(size) {
 }
 
 test(7);
+
+function closestObstacles(size, row, col, obstacleArr) {
+  let [l, r] = leftRight(size, row, column);
+  let [t, b] = topBottom(size, row, column);
+  let tl = TopLeft(size, row, column);
+  let tr = TopRight(size, row, column);
+  let bl = BottomLeft(size, row, column);
+  let br = BottomRight(size, row, column);
+}
