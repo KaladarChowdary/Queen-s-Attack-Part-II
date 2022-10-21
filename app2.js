@@ -40,35 +40,42 @@ function obstaclePositionArray(size, limit) {
 // -------------------------------------------------------------------------------------------------
 function leftRight(size, row, column) {
   return [
-    [row, 1],
-    [row, size],
+    [row, 0],
+    [row, size + 1],
   ];
 }
 
 function topBottom(size, row, column) {
   return [
-    [size, column],
-    [1, column],
+    [size + 1, column],
+    [0, column],
   ];
 }
 
 function TopRight(size, row, column) {
   let diff = smaller(size - row, size - column);
+  diff++;
   return [row + diff, column + diff];
 }
 
 function TopLeft(size, row, column) {
   let diff = smaller(size - row, column - 1);
+  diff++;
+
   return [row + diff, column - diff];
 }
 
 function BottomRight(size, row, column) {
   let rem = smaller(row - 1, size - column);
+  rem++;
+
   return [row - rem, column + rem];
 }
 
 function BottomLeft(size, row, column) {
   let rem = smaller(row - 1, column - 1);
+  rem++;
+
   return [row - rem, column - rem];
 }
 
@@ -96,6 +103,7 @@ function testEnds(size, row, column) {
     console.log(`${p} is to the ${pname} of ${[row, column]}`);
   }
 }
+
 // -------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------
@@ -209,13 +217,62 @@ function higherRow(row1, col1, row2, col2) {
 
 // MASTER TEST CASE
 
-test(7);
+function closestObstacles(size) {
+  let row = randInt(1, size);
+  let column = randInt(1, size);
 
-function closestObstacles(size, row, col, obstacleArr) {
   let [l, r] = leftRight(size, row, column);
   let [t, b] = topBottom(size, row, column);
   let tl = TopLeft(size, row, column);
   let tr = TopRight(size, row, column);
   let bl = BottomLeft(size, row, column);
   let br = BottomRight(size, row, column);
+
+  let col = column;
+  for (let i = 1; i <= size; i++) {
+    for (let j = 1; j <= size; j++) {
+      if (i === row && j === column) continue;
+
+      if (isTop(row, col, i, j)) {
+        t = lowerRow(...t, i, j);
+      }
+      if (isBottom(row, col, i, j)) {
+        b = higherRow(...b, i, j);
+      }
+      if (isLeft(row, col, i, j)) {
+        l = greaterColumn(...l, i, j);
+      }
+      if (isRight(row, col, i, j)) {
+        r = lesserColumn(...r, i, j);
+      }
+
+      if (isTopRight(row, col, i, j)) {
+        tr = lowerRow(...tr, i, j);
+      }
+      if (isTopLeft(row, col, i, j)) {
+        tl = lowerRow(...tl, i, j);
+      }
+      if (isBottomRight(row, col, i, j)) {
+        br = higherRow(...br, i, j);
+      }
+      if (isBottomLeft(row, col, i, j)) {
+        bl = higherRow(...bl, i, j);
+      }
+    }
+  }
+
+  console.log(`Size is ${size}`);
+  console.log(`Position of queen ${[row, column]}`);
+
+  console.log(`top of queen ${t.join(",")}`);
+  console.log(`bottom of queen ${b.join(",")}`);
+  console.log(`right of queen ${r.join(",")}`);
+  console.log(`left of queen ${l.join(",")}`);
+
+  console.log(`topleft of queen ${tl.join(",")}`);
+  console.log(`topright of queen ${tr.join(",")}`);
+  console.log(`bottomleft of queen ${bl.join(",")}`);
+  console.log(`bottomright of queen ${br.join(",")}`);
 }
+
+closestObstacles(8);
