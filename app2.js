@@ -1,5 +1,3 @@
-// ATOMIC
-// -------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------
 
 function randInt(from, to) {
@@ -15,8 +13,6 @@ function smaller(a, b) {
 }
 
 // -------------------------------------------------------------------------------------------------
-// -------------------------------------------------------------------------------------------------
-// -------------------------------------------------------------------------------------------------
 
 function randArr(size, [from, to]) {
   let arr = [];
@@ -31,12 +27,10 @@ function obstaclePositionArray(size, limit) {
   }
   return arr;
 }
-// -------------------------------------------------------------------------------------------------
-// -------------------------------------------------------------------------------------------------
+
 // -------------------------------------------------------------------------------------------------
 
 // FINDS ENDS FOR GIVEN QUEEN POSITION,(LEFT, RIGHT, TOP, BOTTOM)-----------------------------------
-// -------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------
 function leftRight(size, row, column) {
   return [
@@ -77,6 +71,17 @@ function BottomLeft(size, row, column) {
   rem++;
 
   return [row - rem, column - rem];
+}
+
+function giveEdges_l_r_t_b_tl_tr_bl_br(size, row, column) {
+  let [l, r] = leftRight(size, row, column);
+  let [t, b] = topBottom(size, row, column);
+  let tl = TopLeft(size, row, column);
+  let tr = TopRight(size, row, column);
+  let bl = BottomLeft(size, row, column);
+  let br = BottomRight(size, row, column);
+
+  return [l, r, t, b, tl, tr, bl, br];
 }
 
 //Creating function to test whether edges is correct or not
