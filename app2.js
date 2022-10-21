@@ -280,4 +280,15 @@ function closestObstacles(size) {
   console.log(`bottomright of queen ${br.join(",")}`);
 }
 
-closestObstacles(8);
+//function to find accessible boxes
+
+function HorizontalBoxes(l, r) {
+  let [row1, col1] = l;
+  let [row3, col3] = r;
+
+  return col3 - col1 - 2;
+}
+
+console.log(
+  `HorizontalBoxes([2,0], [2,3]) = ${HorizontalBoxes([2, 0], [2, 3])}`
+);
