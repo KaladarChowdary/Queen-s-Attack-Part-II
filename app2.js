@@ -282,13 +282,92 @@ function closestObstacles(size) {
 
 //function to find accessible boxes
 
-function HorizontalBoxes(l, r) {
-  let [row1, col1] = l;
-  let [row3, col3] = r;
-
-  return col3 - col1 - 2;
+function HorizontalBoxes_r_l(r, l) {
+  return r[1] - l[1] - 2;
 }
 
+function VerticleBoxes_t_b(t, b) {
+  return t[0] - b[0] - 2;
+}
+
+function boxesBetween_l_r_t_b_tl_tr_bl_br(l, r, t, b, tl, tr, bl, br) {
+  let h, v, tlD, trD;
+  h = HorizontalBoxes_r_l(r, l);
+  v = VerticleBoxes_t_b(t, b);
+  tlD = VerticleBoxes_t_b(tl, br);
+  trD = VerticleBoxes_t_b(tr, bl);
+  return h + v + tlD + trD;
+}
+
+// ANSWER FUNCTION
+// IT TAKES SIZE, QUEENPOSITION, OBSTACLEPOSITION
+// GET CLOSEST OBSTACLE FROM OBSTACLEARRAY
+// FIND THE BETWEEN BOXES
+function closestObstacle2(size, row, col, obArray) {
+  console.log(`Position of obstacles ${obArray.join(",")}`);
+
+  let [l, r, t, b, tl, tr, bl, br] = giveEdges_l_r_t_b_tl_tr_bl_br(
+    size,
+    row,
+    col
+  );
+
+  for (let [i, j] of obArray) {
+    if (i === row && j === col) continue;
+
+    if (isTop(row, col, i, j)) {
+      t = lowerRow(...t, i, j);
+    }
+    if (isBottom(row, col, i, j)) {
+      b = higherRow(...b, i, j);
+    }
+    if (isLeft(row, col, i, j)) {
+      l = greaterColumn(...l, i, j);
+    }
+    if (isRight(row, col, i, j)) {
+      r = lesserColumn(...r, i, j);
+    }
+
+    if (isTopRight(row, col, i, j)) {
+      tr = lowerRow(...tr, i, j);
+    }
+    if (isTopLeft(row, col, i, j)) {
+      tl = lowerRow(...tl, i, j);
+    }
+    if (isBottomRight(row, col, i, j)) {
+      br = higherRow(...br, i, j);
+    }
+    if (isBottomLeft(row, col, i, j)) {
+      bl = higherRow(...bl, i, j);
+    }
+  }
+
+  // console.log(`Size is ${size}`);
+  // console.log(`Position of queen ${[row, col]}`);
+
+  // console.log(`top of queen ${t.join(",")}`);
+  // console.log(`bottom of queen ${b.join(",")}`);
+  // console.log(`right of queen ${r.join(",")}`);
+  // console.log(`left of queen ${l.join(",")}`);
+
+  // console.log(`topleft of queen ${tl.join(",")}`);
+  // console.log(`topright of queen ${tr.join(",")}`);
+  // console.log(`bottomleft of queen ${bl.join(",")}`);
+  // console.log(`bottomright of queen ${br.join(",")}`);
+  return [l, r, t, b, tl, tr, bl, br];
+}
+
+function ANSWER(size, row, col, obArray) {
+  let [l, r, t, b, tl, tr, bl, br] = closestObstacle2(size, row, col, obArray);
+  return boxesBetween_l_r_t_b_tl_tr_bl_br(l, r, t, b, tl, tr, bl, br);
+}
+
+console.log("------------------------------");
 console.log(
-  `HorizontalBoxes([2,0], [2,3]) = ${HorizontalBoxes([2, 0], [2, 3])}`
+  `Number of accessible boxes are ${ANSWER(
+    4,
+    2,
+    3,
+    obstaclePositionArray(4, 4)
+  )}`
 );
