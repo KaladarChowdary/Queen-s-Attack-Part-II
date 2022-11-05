@@ -342,18 +342,6 @@ function closestObstacle2(size, row, col, obArray) {
     }
   }
 
-  // console.log(`Size is ${size}`);
-  // console.log(`Position of queen ${[row, col]}`);
-
-  // console.log(`top of queen ${t.join(",")}`);
-  // console.log(`bottom of queen ${b.join(",")}`);
-  // console.log(`right of queen ${r.join(",")}`);
-  // console.log(`left of queen ${l.join(",")}`);
-
-  // console.log(`topleft of queen ${tl.join(",")}`);
-  // console.log(`topright of queen ${tr.join(",")}`);
-  // console.log(`bottomleft of queen ${bl.join(",")}`);
-  // console.log(`bottomright of queen ${br.join(",")}`);
   return [l, r, t, b, tl, tr, bl, br];
 }
 
